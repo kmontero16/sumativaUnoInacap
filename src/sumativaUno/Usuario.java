@@ -29,6 +29,7 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 	
+	//Convertir a texto (String) cualquier objeto
 	@Override
 	public String toString() {
 		return "ID: " + this.id
