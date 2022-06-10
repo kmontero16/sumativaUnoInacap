@@ -5,10 +5,10 @@ public class Main {
 	public static void main(String[] args) {
 		Database db = new Database();
 		
-		Producto p1 = new Producto(1, 1500, "Confort");
-		Producto p2 = new Producto(2, 2000, "Jabon");
-		Producto p3 = new Producto(3, 700, "Cepillo de dientes");
-		Producto p4 = new Producto(4, 3500, "Shampoo");
+		Producto p1 = new Producto(1, 1500, "Confort", 6);
+		Producto p2 = new Producto(2, 2000, "Jabon", 4);
+		Producto p3 = new Producto(3, 700, "Cepillo de dientes", 0);
+		Producto p4 = new Producto(4, 3500, "Shampoo", 3);
 		
 		Usuario u1 = new Usuario(1,"Karla");
 		Usuario u2 = new Usuario(2,"Jorge");
