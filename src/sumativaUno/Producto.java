@@ -42,7 +42,7 @@ public class Producto {
 	}
 	
 	public int isDisponible() {
-		if (disponible > 0 ) {
+		if (disponible > 1 ) {
 		return disponible;
 		}
 		else {
