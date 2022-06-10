@@ -4,13 +4,13 @@ public class Producto {
 	private int id;
 	private int precio;
 	private String nombre;
-	private int disponible;
+	private boolean disponible;
 		
 	public Producto() {
 		
 	}
 
-	public Producto(int id, int precio, String nombre, int disponible) {
+	public Producto(int id, int precio, String nombre, boolean disponible) {
 		this.id = id;
 		this.precio = precio;
 		this.nombre = nombre;
@@ -41,17 +41,16 @@ public class Producto {
 		this.nombre = nombre;
 	}
 	
-	public int isDisponible() {
-		if (disponible > 1 ) {
+	public boolean isDisponible() {
+		if (disponible = true ) {
 		return disponible;
 		}
 		else {
-		System.out.println("No hay disponibilidad de producto");
+		return false;
 		}
-		return disponible;
-			
+		
 	}
-	public void setDisponible(int disponible) {
+	public void setDisponible(boolean disponible) {
 		this.disponible = disponible;
 	}
 	
