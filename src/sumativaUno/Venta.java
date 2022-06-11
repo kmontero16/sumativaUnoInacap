@@ -2,14 +2,14 @@ package sumativaUno;
 
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Venta {
 
 	private int id;
-	private Map<Producto,Integer> productos;
+	private ArrayList<Producto> productos;
+	private ArrayList <Integer> cantidadventa;
 	private Usuario usuario;
 	private Date fecha;
 	
@@ -19,7 +19,8 @@ public class Venta {
 	
 	public Venta(int id,Usuario usuario, Date fecha) {
 		this.id = id;
-		this.productos = new HashMap<Producto,Integer>() ;
+		this.productos = new ArrayList<Producto>() ;
+		this.cantidadventa = new ArrayList <Integer>();
 		this.usuario = usuario;
 		this.setFecha(fecha);
 	}
@@ -31,17 +32,26 @@ public class Venta {
 		this.id = id;
 	}
 	
-	public Map<Producto, Integer> getProductos() {
+	public ArrayList<Producto> getProductos() {
 		return productos;
 	}
 
-	public void setProductos(Map<Producto, Integer> productos) {
+	public void setProductos(ArrayList<Producto> productos) {
 		this.productos = productos;
+	}
+
+	public ArrayList<Integer> getCantidadventa() {
+		return cantidadventa;
+	}
+
+	public void setCantidadventa(ArrayList<Integer> cantidadventa) {
+		this.cantidadventa = cantidadventa;
 	}
 
 	public Usuario getUsuario() {
 		return usuario;
 	}
+
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
@@ -53,30 +63,34 @@ public class Venta {
 	}
 	
 	//CUSTOM METODOS
-	public void agregarProducto(Producto prod,int cantidad) {
-		this.productos.put(prod, cantidad);
+	public void agregarProducto(Producto prod, int cant) {
+		this.productos.add(prod);
+		this.cantidadventa.add(cant);
 	}
 	
 	public int calcularTotal() {
 		int total = 0 ; 
-		for (Map.Entry<Producto,Integer > entry : this.productos.entrySet()) {
-		    total += entry.getKey().getPrecio() * entry.getValue();
+		for (int i = 0; i< productos.size();i++) {
+			total += productos.get(i).getPrecio() * cantidadventa.get(i);
 		}
 		return total;
 	}
 	
 	public void actualizarCantidad(Producto prod,int cantidad) {
-		this.productos.replace(prod, cantidad);
+		for(int i = 0 ; i< productos.size();i++) {
+			if (productos.get(i).getId() == prod.getId()){
+				cantidadventa.set(i,cantidad);
+			}
+		}
 	}
 	
-	public boolean eliminarProducto(Producto prod) {
-		if(this.productos.containsKey(prod)) {
-			this.productos.remove(prod);
-			return true;
-		}else {
-			return false;
+	public void eliminarProducto(Producto prod) {
+		for(int i = 0; i<productos.size(); i++) {
+			if(productos.get(i).getId()== prod.getId()) {
+				productos.remove(i);
+				cantidadventa.remove(i);
+			}
 		}
-		
 	}
 
 	public Date getFecha() {
