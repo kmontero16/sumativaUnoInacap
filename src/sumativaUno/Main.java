@@ -1,18 +1,24 @@
 package sumativaUno;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		Database db = new Database();
 		
-		Producto p1 = new Producto(1, 1500, "Confort", true);
-		Producto p2 = new Producto(2, 2000, "Jabon", true);
-		Producto p3 = new Producto(3, 700, "Cepillo de dientes", false);
-		Producto p4 = new Producto(4, 3500, "Shampoo", true);
+		
+		Producto p1 = new Producto(1, 1500, "Confort", 6);
+		Producto p2 = new Producto(2, 2000, "Jabon", 4);
+		Producto p3 = new Producto(3, 700, "Cepillo de dientes", 0);
+		Producto p4 = new Producto(4, 3500, "Shampoo", 6);
 		
 		Usuario u1 = new Usuario(1,"Karla");
 		Usuario u2 = new Usuario(2,"Jorge");
 		
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse("2018-09-09");
 		
 		db.agregarProducto(p1);
 		db.agregarProducto(p2);
@@ -22,7 +28,7 @@ public class Main {
 		db.agregarUsuario(u1);
 		db.agregarUsuario(u2);
 		
-		p1.isDisponible();
+		p1.getDisponible();
 		
 		System.out.println("IMPRIMIR PRODUCTOS");
 		db.listarProductos();
@@ -31,18 +37,19 @@ public class Main {
 		db.listarUsuarios();
 		
 		
+		Date f1 = new Date();
 		
-		Venta v1 = new Venta(1,u1);
+		Venta v1 = new Venta(1,u1,f1);
 		v1.agregarProducto(p1, 3);
 		v1.agregarProducto(p2, 1);
 		//System.out.println(v1.toString());
 		
-		Venta v2 = new Venta(2,u2);
+		Venta v2 = new Venta(2,u2,new Date ());
 		v2.agregarProducto(p4, 2);
 		v2.agregarProducto(p3, 5);
 		//System.out.println(v2.toString());
 		
-		Venta v3 = new Venta(3,u1);
+		Venta v3 = new Venta(3,u1,new Date());
 		v3.agregarProducto(p1, 6);
 		v3.agregarProducto(p4, 1);
 		//System.out.println(v3.toString());

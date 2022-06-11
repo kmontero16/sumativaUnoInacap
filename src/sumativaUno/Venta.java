@@ -1,5 +1,8 @@
 package sumativaUno;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,15 +11,17 @@ public class Venta {
 	private int id;
 	private Map<Producto,Integer> productos;
 	private Usuario usuario;
+	private Date fecha;
 	
 	public Venta() {
 		
 	}
 	
-	public Venta(int id,Usuario usuario) {
+	public Venta(int id,Usuario usuario, Date fecha) {
 		this.id = id;
 		this.productos = new HashMap<Producto,Integer>() ;
 		this.usuario = usuario;
+		this.setFecha(fecha);
 	}
 	
 	public int getId() {
@@ -43,7 +48,8 @@ public class Venta {
 
 	@Override
 	public String toString() {
-		return "ID: " + id + ", Productos: " + productos + ", Usuario: " + usuario + ",Total: $" + this.calcularTotal();
+		return "ID: " + id + ", Productos: " + productos + ", Usuario: " + usuario 
+				+ ", Fecha: " + new SimpleDateFormat("yyyy-MM-dd").format(fecha) + ",Total: $" + this.calcularTotal();
 	}
 	
 	//CUSTOM METODOS
@@ -71,5 +77,13 @@ public class Venta {
 			return false;
 		}
 		
+	}
+
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
 	}	
 }
